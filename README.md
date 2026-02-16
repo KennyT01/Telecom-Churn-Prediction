@@ -20,7 +20,9 @@ By analysing historical customer data and building an interactive dashboard, the
 
 ## Model Pipeline
 1. **Preprocessing**: Handled missing values and outliers, and removed duplicate rows.
+   
 2. **Model Selection**: Tested Logistic Regression, Random Forest, and XGBoost. Handled imbalanced data using SMOTE and a weighted model. Logistic Regression performed the best after hyperparameter tuning via RandomizedSearchCV. Logistic Regression provided the best of interpretability and generalisation, likely because the relationships between 'Churn' and the features are strong linear, which Logistic Regression performs well on.
+   
 3. **Model Training and Evaluation**: Models were trained on the training set and evaluated on a validation set. Performance was assessed usins recall as the main metric and confusion matrices to analyse model errors. Recall was used instead of accuracy as missing a churning customer is more costly than sending a discount to a non-churning customer. We were also identified the features that had the most influence on whether a customer will churn or not.
 
 ## Business Impacts 
