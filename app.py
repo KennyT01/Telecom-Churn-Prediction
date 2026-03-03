@@ -10,9 +10,6 @@ from utils import get_feature_importance, churn_cause, action_priority
 st.set_page_config(layout="wide") 
 st.title("Telecom Churn Dashboard")
 
-# st.markdown("""
-# This dashboard predicts customer churn and estimates **Revenue at Risk** for high-risk customers.  
-
 # **Key Features:**
 # - Calculates total revenue at risk
 # - Displays feature importance to highlight key churn drivers
@@ -29,9 +26,7 @@ features = joblib.load('features.pkl')
 
 # KPIs
 st.subheader("Key Metrics")
-# st.markdown("""
-# Key Metrics based on a hold-out test set
-# """)
+
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -47,30 +42,6 @@ with col3:
     col3.metric("Revenue at Risk (High-Risk)", 
             f"${df_test.loc[df_test['High Risk Customer']==1,'Revenue at Risk'].sum():,.2f}")
 
-
-
-# # Get counts and rename
-# churn_counts = df['Churn'].value_counts().reset_index()  # columns: index, Churn
-# churn_counts.columns = ['Status', 'Count']               # rename columns
-# churn_counts['Status'] = churn_counts['Status'].map({0:'Retained', 1:'Churned'})
-
-# # Plot pie chart
-
-
-# with col4:
-#     fig = px.pie(churn_counts, values='Count', names='Status', color='Status', title='Overall Churn Distribution', color_discrete_map={'Retained': 'green', 'Churned': 'red'})
-
-#     st.plotly_chart(fig, width='stretch')
-# col4, col5, col6 = st.columns(3)
-
-# col4.metric("High-Risk Customers", f"{df_test['High Risk Customer'].sum()}")
-
-# col5.metric("Total Revenue at Risk", f"${df_test['Revenue at Risk'].sum():,.2f}")
-
-# col6.metric("Revenue at Risk (High-Risk)", 
-#             f"${df_test.loc[df_test['High Risk Customer']==1,'Revenue at Risk'].sum():,.2f}")
-
-
 st.subheader("Customer Prediction Panel")
 col1, col2= st.columns(2)
 
@@ -78,22 +49,26 @@ with col1:
     call_fail = st.number_input("Call Failure", min_value=0)
     charge = st.selectbox("Charge Amount", list(range(0, 10)))
     value = st.number_input("Customer Value", min_value=0.0)
-    age = st.number_input("Age", min_value=15)
+
 
 with col2:
     complains = st.selectbox("Complain in last 9 months?", ["No", "Yes"])
     freq_use = st.number_input("Frequency of Use", min_value=0)
-    plan = st.selectbox("Type of Plan", ["PAYG", "Contractual"])
-    sub_length = st.number_input("Subscription Length", min_value=0)
 
-plan = 0 if plan == "PAYG" else 1
 
 complains = 0 if complains == "No" else 1
+
+# Default Values for Hidden Features (No Impact on prediction)
+plan = df_test['Tariff Plan'].mode()[0]
+age = df_test['Age'].median()
+sub_length = df_test['Subscription  Length'].median()
+
 
 
 if st.button("Predict Churn"):
     # Create a dataframe from the inputs
-    input_df = pd.DataFrame([[call_fail, complains, charge, freq_use, plan, age, value, sub_length]], 
+    input_df = pd.DataFrame([[call_fail, complains, charge, freq_use, plan, 
+                              age, value, sub_length]], 
                             columns=features) 
     
     prediction = model.predict(input_df)[0]
@@ -107,7 +82,6 @@ if st.button("Predict Churn"):
         risk_level = "Low"
     
     if risk_level == "High":
-        st.markdown('<p style="font-size: 24px; font-weight: bold;">Predicting Churn Risk...</p>', unsafe_allow_html=True)
         st.error(f"High Risk! This customer is likely to churn. (Probability: {probability:.2%})")
 
     elif risk_level == "Moderate":
@@ -115,10 +89,10 @@ if st.button("Predict Churn"):
 
     else:
         st.success(f"Low Risk. This customer is likely to stay. (Probability: {1-probability:.2%})")
-        st.write(f"**Recommended Action:** No action required. Monitor usage.")
 
-    churn_cause = churn_cause(input_df, probability)
-    st.write(f"**Predicted Cause:** {churn_cause}")
+    if risk_level != "Low":    
+        churn_cause = churn_cause(input_df, probability)
+        st.write(f"**Predicted Cause:** {churn_cause}")
 
     action = action_priority(churn_cause, risk_level)
 
@@ -170,17 +144,6 @@ This plots show the proportion of customers who churned versus those retained.
 This will help the company understand the overall churn levels and identify risk segments.
 """)
 
-# df = pd.read_csv("data/cleaned_churn_data.csv")
-
-# # Get counts and rename
-# churn_counts = df['Churn'].value_counts().reset_index()  # columns: index, Churn
-# churn_counts.columns = ['Status', 'Count']               # rename columns
-# churn_counts['Status'] = churn_counts['Status'].map({0:'Retained', 1:'Churned'})
-
-# # Plot pie chart
-# fig = px.pie(churn_counts, values='Count', names='Status', color='Status', title='Overall Churn Distribution', color_discrete_map={'Retained': 'green', 'Churned': 'red'})
-
-# st.plotly_chart(fig, width='stretch')
 
 col1, col2 = st.columns(2)
 df['Status'] = df['Churn'].map({0: 'Retained', 1: 'Churn'})

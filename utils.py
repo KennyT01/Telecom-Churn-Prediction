@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 def get_feature_importance(model, features):
-    coefficients = model.named_steps['lr'].coef_[0]
+    coefficients = model.named_steps['classifier'].coef_[0]
 
     feature_importance = pd.DataFrame({
     'feature': features,
@@ -23,11 +23,11 @@ def churn_cause(data, churn_prob):
         elif data['Complains'] == 1:
             churn_cause = "Dissatisfaction"
         elif data['Call  Failure'] > 5:
-            churn_cause = "Network quality"
+            churn_cause = "Network Quality"
         else:
             churn_cause = "General Risk"
     else:
-        churn_cause = "Low Probability of Churn. No Action Required"
+        churn_cause = "Low Probability of Churn."
 
     return churn_cause
 
@@ -52,7 +52,7 @@ def action_priority(churn_cause, risk_level):
             action = "Notify customer of monitoring / minor compensation"
         else:
             action = "Send reminder email / app notification"
-    else:
-        action = "No action required. Monitor usage."
+    else:  
+        action = None
         
     return action
