@@ -2,7 +2,7 @@
 Analysis and prediction of customer churn in the telecom industry
 
 ## Executive Summary
-This project identifies high-risk customers likely to cancel their telecom subscriptions. By analysing customer experience, usage, service types and demographics. I developed a machine learning mdoel that achieves a **89% Recall rate**, potentially saving the company $6,000 in revenue by enabling proactive retention offers.
+This project identifies high-risk customers likely to cancel their telecom subscriptions. By analysing customer experience, usage, service types and demographics, I developed a machine learning mdoel that achieves a **93% Recall rate**, potentially saving the company $6,000 in revenue by enabling proactive retention offers.
 
 ## The Business Problem
 Customer churn is a major challenge for a majority of companies, specifically for telecom companies, leading to significant revenue loss. Customer churning is defined as when a customer stops using a service or product by a company. This metric is often portray as a percentage of total customers and is a key performance indicator in evaluating the performance of a product or service. Being able to identify the customers that have a high risk of churning before they actually churn will allow companies to take action and mitigate loss. This goal of the project is to predict:
