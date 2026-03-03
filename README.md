@@ -13,6 +13,9 @@ Customer churn is a major challenge for a majority of companies, specifically fo
 
 By analysing historical customer data and building an interactive dashboard, the company can proactively reduce churn and improve customer satisfaction.
 
+## Streamlit Dashboard
+![KPI_Panel](Images/KPI-and-Prediction-Panel.png)
+
 ## Key Insights from EDA
 - The distribution of customers that churn or not is quite imbalanced, with 15% churning and 85% staying.
 - Almost 80% of customers that churned had complaints about their service, suggesting that poor customer experience is a driving factor in churning.
