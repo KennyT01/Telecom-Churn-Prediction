@@ -15,10 +15,8 @@ By analysing historical customer data and building an interactive dashboard, the
 
 ## Streamlit Dashboard
 ![KPI-and-Prediction-Panel](./Images/KPI%20and%20Prediction%20Panel.png)
-![Feature Explanationl](./Images/Feature_Explanation.png)
-![KPI-and-Prediction-Panel](./Images/KPI-and-Prediction-Panel.png)
-
-
+![Feature Explanationl](./Images/Feature%20Explanation.png)
+![Churn Distributionsl](./Images/Churn%20Distributions.png)
 
 ## Key Insights from EDA
 - The distribution of customers that churn or not is quite imbalanced, with 15% churning and 85% staying.
