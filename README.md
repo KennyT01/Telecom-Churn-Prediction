@@ -14,7 +14,7 @@ Customer churn is a major challenge for a majority of companies, specifically fo
 By analysing historical customer data and building an interactive dashboard, the company can proactively reduce churn and improve customer satisfaction.
 
 ## Streamlit Dashboard
-![KPI-and-Prediction-Panel](./Images/KPI_and_Prediction_Panel.png)
+![KPI-and-Prediction-Panel](./Images/KPI%20and%20Prediction%20Panel.png)
 ![Feature Explanationl](./Images/Feature_Explanation.png)
 ![KPI-and-Prediction-Panel](./Images/KPI-and-Prediction-Panel.png)
 
