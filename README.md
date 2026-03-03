@@ -35,7 +35,21 @@ streamlit run app.py
 3. **Model Training and Evaluation**: Models were trained on the training set and evaluated on a validation set. Performance was assessed usins recall as the main metric and confusion matrices to analyse model errors. Recall was used instead of accuracy as missing a churning customer is more costly than sending a discount to a non-churning customer. We were also identified the features that had the most influence on whether a customer will churn or not.
 
 ## Business Impacts 
-Based on our model and analysis, we were able to achieve a **Recall of 92%**, which means that we were able to identify 90% of the customers that are likely to churn. Based on the customer test set of 570 customers, we were able to identify 51 of them as high-risk customers, with a **Total Revenue at Risk of $6,340.13**. In addition, we also identified the features that had the most impact on customer churning. These are frequency of use, customer value, complaints, charge amount and call failures. With the model also providing the main reason for a customer to likely churn, we are able take direct action for our retention strategies. These strategies can include providing retention support and incentives, priority support call, troubleshooting technical difficulties, direct monitoring and reminder emails/app notifications. 
+Based on our model and analysis, we were able to achieve a **Recall of 92%**, which means that we were able to identify 90% of the customers that are likely to churn. Based on the customer test set of 570 customers, we were able to identify 51 of them as high-risk customers, with a **Total Revenue at Risk of $6,340.13**. 
+
+In addition, we also identified the features that had the most impact on customer churning. These are:
+- Frequency of Use
+- Customer Value
+- Complaints
+- Charge Amount
+- Call Failures.
+
+With the model also providing the main reason for a customer to likely churn, we are able take direct action for our retention strategies. These strategies can include:
+- Providing Retention Support and Incentives
+- Priority Support Call
+- Troubleshooting Technical Difficulties
+- Direct Monitoring
+- Reminder Emails/App Notifications. 
 
 ## Conclusion
 This project aimed to predict customer churn in a telecom company to enable targeted retention strategies. Model intepretation shows that churn is primarily driven by customer behaviour and service experience: complaints and call failures substantially increase risk of churn, while higher engagement, customer value and charge amounts reduce it. These insights inform actionable business strategies, including immediate support for complaining customers, addressing technical issues, and engage low-usage customers with incentives. By implementing these strategies, the company can proactively reduce churn and protect revenue while focusing resources on the most at-risk customers.
